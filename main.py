@@ -83,16 +83,16 @@ def home():
     consulta = db.session.execute(db.Select(Movie).order_by(Movie.rating))
     
     #Convertimos el resultado de la consulta en una lista de Python
-    Lista_Pelis = consulta.scalars().all()
+    listaPelis = consulta.scalars().all()
     
     #Recorremos la lista de pelis, que ya esta ordenada por ranking y le asignamos ranking en secuencia al recorrela
     
     for i in range(len(Lista_Pelis)):
         
-        Lista_Pelis[i].ranking = len(Lista_Pelis) - i
+        listaPelis[i].ranking = len(listaPelis) - i
         db.session.commit()
 
-    return render_template("index.html", pelis = Lista_Pelis)
+    return render_template("index.html", pelis = listaPelis)
 
 
 
